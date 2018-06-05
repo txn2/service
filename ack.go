@@ -3,6 +3,7 @@ package service
 // Ack
 type Ack struct {
 	Version     int         `json:"ack_version"`
+	Agent       string      `json:"agent"`
 	Uuid        string      `json:"ack_uuid"`
 	RequestUuid string      `json:"req_uuid"`
 	DateTime    string      `json:"date_time"`
