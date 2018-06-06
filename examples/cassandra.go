@@ -93,7 +93,7 @@ func main() {
 		func(c *gin.Context) {
 			ack := ginack.Ack(c)
 
-			ret, err := cas.Query("select * from mv_system_hold_by_seq where system = 'Fuse' and seq = '184009999989801300028601'")
+			ret, err := cas.Query("select a, b, c from something where that = 'this'")
 			if err != nil {
 				ack.ServerCode = 500
 				ack.PayloadType = "ErrorMessage"
