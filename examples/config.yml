@@ -1,0 +1,15 @@
+something:
+  important: true
+optional: |-
+  Yes, all config is optional but some services have
+  helpers that look for their particular config block
+  like CassandraFromCfg
+
+# the txn2/service CassandraFromCfg function uses
+# the following configuration
+cassandra:
+  cluster: ["node1.example.com"] # array of strings
+  keyspace: dev
+  username: hacker
+  password: password2
+  numConns: 3

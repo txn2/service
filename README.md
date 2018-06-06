@@ -8,7 +8,7 @@
 go get github.com/txn2/service
 ```
 
-### Ack
+## Ack
 HTTP service acknowledgement structure.
 
 The Ack data structure is used for providing a common wrapper around HTTP JSON api calls developed in [go].
@@ -17,6 +17,7 @@ The Ack data structure is used for providing a common wrapper around HTTP JSON a
 // Ack
 type Ack struct {
 	Version     int         `json:"ack_version"`
+	Agent       string      `json:"agent"`
 	Uuid        string      `json:"ack_uuid"`
 	RequestUuid string      `json:"req_uuid"`
 	DateTime    string      `json:"date_time"`
@@ -33,13 +34,14 @@ type Ack struct {
 ```json
 {
     "ack_version": 5,
+    "agent": "",
     "ack_uuid": "f8b0d2ca-5a7c-48fd-ba26-5b53946d741c",
     "req_uuid": "",
     "date_time": "2018-06-05T10:36:38-07:00",
     "success": true,
     "server_code": 200,
     "location": "/",
-    "payload_type": "",
+    "payload_type": "Message",
     "payload": {
         "message": "service boilerplate"
     }
@@ -71,6 +73,11 @@ import (
     }
 ...
 ```
+
+
+## Cassandra
+
+See **examples** folder.
 
 
 [gin-gonic]: https://github.com/gin-gonic
