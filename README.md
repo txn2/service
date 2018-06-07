@@ -80,6 +80,7 @@ import (
 See **examples** folder.
 
 
+[examples]: https://github.com/txn2/service/tree/master/examples
 [gin-gonic]: https://github.com/gin-gonic
 [Go Microservices Boilerplate]: https://github.com/txn2/boilerplate-go
 [TXN2]: https://txn2.com

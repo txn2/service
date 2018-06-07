@@ -1,5 +1,10 @@
 package service
 
+import (
+	"fmt"
+	"time"
+)
+
 // Ack
 type Ack struct {
 	Version     int         `json:"ack_version"`
@@ -12,10 +17,18 @@ type Ack struct {
 	Location    string      `json:"location"`
 	PayloadType string      `json:"payload_type"`
 	Payload     interface{} `json:"payload"`
+	Duration    string      `json:"duration"`
+	instTime    time.Time
+}
+
+// StartTimer
+func (a *Ack) StartTimer() {
+	a.instTime = time.Now()
 }
 
 // SetPayload
 func (a *Ack) SetPayload(payload interface{}) {
+	a.Duration = fmt.Sprintf("%s", time.Since(a.instTime))
 	a.Payload = payload
 }
 
