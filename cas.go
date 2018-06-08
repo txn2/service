@@ -81,7 +81,9 @@ func CassandraFromCfg(cfg map[interface{}]interface{}) (*cas, error) {
 
 // Cassandra produces a cassandra object with session
 func Cassandra(cfg CassandraCfg) (*cas, error) {
+
 	cluster := gocql.NewCluster(cfg.Cluster...)
+	cluster.DisableInitialHostLookup = true
 	cluster.PoolConfig.HostSelectionPolicy = gocql.TokenAwareHostPolicy(gocql.RoundRobinHostPolicy())
 	cluster.Compressor = &gocql.SnappyCompressor{}
 	cluster.RetryPolicy = &gocql.ExponentialBackoffRetryPolicy{NumRetries: 3}
@@ -96,7 +98,6 @@ func Cassandra(cfg CassandraCfg) (*cas, error) {
 	}
 
 	cluster.Keyspace = cfg.Keyspace
-
 	cluster.NumConns = cfg.NumConns
 
 	session, err := cluster.CreateSession()
