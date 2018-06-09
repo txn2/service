@@ -18,11 +18,15 @@ type CassandraCfg struct {
 	NumConns int      `yaml:"numConns"`
 }
 
+// cas defines a Cassandra session and
+// it's configuration.
 type cas struct {
 	cfg     CassandraCfg
 	Session *gocql.Session
 }
 
+// CasRows used for simple result sets not bound to a
+// specific type
 type CasRows []map[string]interface{}
 
 func (c *cas) Query(query string) (CasRows, error) {
@@ -55,11 +59,10 @@ func (c *cas) Query(query string) (CasRows, error) {
 }
 
 // CassandraFromCfg takes a configuration map
-func CassandraFromCfg(cfg map[interface{}]interface{}) (*cas, error) {
+func CassandraFromCfg(cfg Cfg) (*cas, error) {
 	cas := &cas{}
 	ccfg := CassandraCfg{}
 
-	//ccfg := CassandraCfg{}
 	if cfg["cassandra"] == nil {
 		return cas, errors.New("no cassandra configuration found")
 	}
