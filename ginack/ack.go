@@ -10,8 +10,10 @@ import (
 )
 
 func Ack(c *gin.Context) service.Ack {
-	t := time.Now()
-	u, _ := uuid.NewV4()
+	var (
+		t = time.Now()
+		u = uuid.NewV4()
+	)
 
 	// get uuid from header
 	ru := c.Request.Header.Get("uuid")
